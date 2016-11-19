@@ -1,28 +1,18 @@
-<h1>
-  <%= gravatar_for @user %>
-  <%= @user.name %>
-</h1>
-
-<form class="form-horizontal">
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
-    <div class="col-sm-9">
-      <%= @user.email %>
-    </div>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if @user.microposts.any? %>
+      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <ol class="microposts">
+        <%= render @microposts %>
+      </ol>
+    <% end %>
   </div>
-
-  <div class="form-group">
-    <label for="inputIntroduction" class="col-sm-3 control-label">Introduction</label>
-    <div class="col-sm-9">
-      <%= @user.introduction %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="inputArea" class="col-sm-3 control-label">Area</label>
-    <div class="col-sm-9">
-      <%= @user.area %>
-    </div>
-  </div>
-</form>
-      
+</div>
