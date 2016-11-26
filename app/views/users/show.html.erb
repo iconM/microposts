@@ -5,8 +5,20 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+      <span><%= link_to "view my profile", @user %></span>
+      <span><b>Microposts:</b> <%= @user.microposts.count %></span>
     </section>
   </aside>
+
+
+  <div class="col-md-8">
+  <ul class="nav nav-tabs nav-justified">
+  <li class="active"><%= link_to "tweet", @user %></li>
+  <li><%= link_to "following", followings_user_path %></li>
+  <li><%= link_to "follower", followers_user_path %></li>
+  </class>
+  </div>
+
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
