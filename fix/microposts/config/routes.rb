@@ -7,8 +7,15 @@ Rails.application.routes.draw do
   put    'users/:id' , to: 'users#update'
   delete 'logout', to: 'sessions#destroy'
 
-  resources :users
+  resources :microposts
+  resources :relationships, only: [:create, :destroy]
   
+  resources :users do
+    member do
+      get :followings, :followers
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

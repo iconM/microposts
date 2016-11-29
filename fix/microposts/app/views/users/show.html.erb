@@ -1,28 +1,31 @@
-<h1>
-  <%= gravatar_for @user %>
-  <%= @user.name %>
-</h1>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+      <span><%= link_to "view my profile", @user %></span>
+      <span><b>Microposts:</b> <%= @user.microposts.count %></span>
+    </section>
+  </aside>
 
-<form class="form-horizontal">
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
-    <div class="col-sm-9">
-      <%= @user.email %>
-    </div>
+
+  <div class="col-md-8">
+  <ul class="nav nav-tabs nav-justified">
+  <li class="active"><%= link_to "tweet", @user %></li>
+  <li><%= link_to "following", followings_user_path %></li>
+  <li><%= link_to "follower", followers_user_path %></li>
+  </class>
   </div>
 
-  <div class="form-group">
-    <label for="inputIntroduction" class="col-sm-3 control-label">Introduction</label>
-    <div class="col-sm-9">
-      <%= @user.introduction %>
-    </div>
+  <div class="col-md-8">
+    <%= render 'follow_form' if logged_in? %>
+    <% if @user.microposts.any? %>
+      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <ol class="microposts">
+        <%= render @microposts %>
+      </ol>
+    <% end %>
   </div>
-
-  <div class="form-group">
-    <label for="inputArea" class="col-sm-3 control-label">Area</label>
-    <div class="col-sm-9">
-      <%= @user.area %>
-    </div>
-  </div>
-</form>
-      
+</div>
